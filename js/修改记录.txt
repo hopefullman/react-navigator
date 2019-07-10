@@ -1,0 +1,14 @@
+简介：
+一个react-native项目
+
+使用react-navigator2.x.x版本
+
+现在里面只是导航路由和字体图标
+
+实现了路由的多层嵌套，动态修改tabbarlabel
+
+后期里面会加入如何动态实现tabbar
+
+最后会尝试和redux结合
+记录版本；
+里面page-1，navigator-1是一些代码的更迭，是最原始版本。
