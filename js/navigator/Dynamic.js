@@ -68,7 +68,7 @@ class Dynamic extends Component{
    createDynamicTabs_(){
     const {PopularPage,TrendPage,MyPage}=DynamicTabs;
     const DynamicTabs_={PopularPage,TrendPage,MyPage};
-    PopularPage.navigationOptions.tabBarLabel='最re';
+    PopularPage.navigationOptions.tabBarLabel='最新';
     return createBottomTabNavigator(DynamicTabs_,{
             tabBarOptions: {
               labelStyle: {
@@ -79,7 +79,7 @@ class Dynamic extends Component{
           })
     }
   render(){
-    navigatorUtil.navigation=this.props.navigation
+    
     const Tabs=this.createDynamicTabs_();
     return (
       <Fragment>
