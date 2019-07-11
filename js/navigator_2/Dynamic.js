@@ -66,15 +66,15 @@ const DynamicTabs={
       }
 class Dynamic extends Component{
    createDynamicTabs_(){
-    const {PopularPage,TrendPage,MyPage,FavoratePage}=DynamicTabs;
-    const DynamicTabs_={PopularPage,FavoratePage,TrendPage,MyPage};
+    const {PopularPage,TrendPage,MyPage}=DynamicTabs;
+    const DynamicTabs_={PopularPage,TrendPage,MyPage};
     PopularPage.navigationOptions.tabBarLabel='最新';
     return createBottomTabNavigator(DynamicTabs_,{
             tabBarOptions: {
               labelStyle: {
                 fontSize: 13,
               },
-              activeTintColor:'#21a675'
+              activeTintColor:'blue'
             }
           })
     }

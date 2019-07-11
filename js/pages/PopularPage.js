@@ -18,30 +18,56 @@ import {
 import {createMaterialTopTabNavigator} from 'react-navigation';
 import navigatorUtil from '../navigator/navigatorUtil';
 class PopularPage extends Component{
-  render(){
-  const TopTabs = createMaterialTopTabNavigator({
-      PopularTab1:{
-        screen:PopularTab,
-        navigationOptions:{
-          title:"tab1"
-        }
-      },
-      PopularTab2:{
-        screen:PopularTab,
-        navigationOptions:{
-          title:"tab2"
-        }
-      } 
-    },{
+  constructor(props){
+    super(props);
+    this.DefaultTopTabs=['android','java','js','css','h5','node','react-native','react-navigation']
+  }
 
+  TopTabsmap(){
+    const TopTabs={}
+    this.DefaultTopTabs.map((item,index)=>{
+      TopTabs[`tab${index}`]={
+        screen:props=><PopularTab {...props} tabLabel={item}/>,
+        navigationOptions:{
+          title:item
+        }
+      }
+    })
+    return TopTabs;
+  }
+  render(){
+    const Tabs = createMaterialTopTabNavigator(this.TopTabsmap(),{
+      tabBarOptions:{
+        tabStyle:styles.tabStyle,
+        upperCaseLabel:false,
+        scrollEnabled:true,
+        style:styles.style_,
+        indicatorStyle:styles.indicatorStyle,
+        labelStyle:styles.labelStyle
+      }
     })
     return (
-         <TopTabs/>
+         <Tabs/>
       )
   }
 }
 const styles = StyleSheet.create({
- 
+  style_:{
+    backgroundColor:'#21a675'
+  },
+  tabStyle:{
+    minWidth:50
+  },
+  indicatorStyle:{
+    height:1,
+    backgroundColor:'#fff'
+  },
+  labelStyle:{
+    fontSize:15,
+    color:'#fff',
+    marginTop:5,
+    marginBottom:5
+  }
 });
 export default PopularPage;
 
