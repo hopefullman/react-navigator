@@ -19,6 +19,7 @@ import {createStackNavigator, createBottomTabNavigator, createSwitchNavigator} f
 import WelcomePage from '../pages/WelcomePage';
 import HomePage from '../pages/HomePage';
 import DetailPage from '../pages/DetailPage';
+import FetchDemo from '../pages/FetchDemo';
 //这里即将配置navigator和rdux结合部分，倒入以下两个库
 import {connect} from 'react-redux';
 import {createReactNavigationReduxMiddleware, createReduxContainer} from 'react-navigation-redux-helpers';
@@ -42,6 +43,11 @@ const Home =createStackNavigator({
         },
         DetailPage:{
           screen:DetailPage,
+          navigationOptions:{
+          }
+        },
+        FetchDemo:{
+          screen:FetchDemo,
           navigationOptions:{
           }
         }
