@@ -25,11 +25,10 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Feather from 'react-native-vector-icons/Feather';
-import {connect} from 'react-redux';
 
 const DynamicTabs={
        PopularPage:{
-                screen:props=><PopularPage/>,
+                screen:PopularPage,
                 navigationOptions:{
                   tabBarLabel:'最新',
                   tabBarIcon:({tintColor,focused})=>(
@@ -38,7 +37,7 @@ const DynamicTabs={
                 }
               },
               FavoratePage:{
-                screen:props=><FavoratePage/>,
+                screen:FavoratePage,
                 navigationOptions:{
                   tabBarLabel:'收藏',
                   tabBarIcon:({tintColor,focused})=>(
@@ -47,7 +46,7 @@ const DynamicTabs={
                 }
               },
               TrendPage:{
-                screen:props=><TrendPage/>,
+                screen:TrendPage,
                 navigationOptions:{
                   tabBarLabel:'趋势',
                   tabBarIcon:({tintColor,focused})=>(
@@ -56,7 +55,7 @@ const DynamicTabs={
                 }
               },
               MyPage:{
-                screen:props=><MyPage/>,
+                screen:MyPage,
                 navigationOptions:{
                   tabBarLabel:'我的',
                   tabBarIcon:({tintColor,focused})=>(
@@ -75,7 +74,7 @@ class Dynamic extends Component{
               labelStyle: {
                 fontSize: 13,
               },
-              activeTintColor:`${this.props.theme}`
+              activeTintColor:'#21a675'
             }
           })
     }
@@ -94,9 +93,5 @@ const styles = StyleSheet.create({
   fontSize:20
  }
 });
-const mapStateToProps=(state)=>{
-  return {
-    theme:state.theme.theme
-  }
-}
-export default connect(mapStateToProps,null)(Dynamic);
+
+export default Dynamic;

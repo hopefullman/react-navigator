@@ -1,4 +1,4 @@
-import React, {Fragment,Component} from 'react';
+import React, {Component} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -6,6 +6,7 @@ import {
   View,
   Text,
   StatusBar,
+  TouchableHighlight
 } from 'react-native';
 
 import {
@@ -15,17 +16,45 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import {connect} from 'react-redux';
+
 class FavoratePage extends Component{
   render(){
     return (
-      <Fragment>
+      <View style={styles.container}>
         <Text>FavoratePage</Text>
-      </Fragment>
+        <TouchableHighlight onPress={()=>{this.props.changeActiveTintColor('#0f0')}}><Text style={styles.Text}>换颜色</Text></TouchableHighlight>
+      </View>
       )
   }
 }
+const mapStateToProps=(state)=>{
+  return {
+    theme:state.theme.theme
+  }
+}
+const mapDispatchToProps=(dispatch)=>{
+  return {
+    changeActiveTintColor(theme){
+      const action={
+        type:'changeActiveTintColor',
+        theme:theme
+      }
+      dispatch(action)
+    }
+  }
+}
 const styles = StyleSheet.create({
- 
+ container:{
+  flexDirection:'column',
+  justifyContent:'center',
+  alignItems:'center'
+ },
+ Text:{
+  paddingTop:20,
+  paddingBottom:20,
+  fontSize:20
+ }
 });
 
-export default FavoratePage;
+export default connect(mapStateToProps,mapDispatchToProps)(FavoratePage);

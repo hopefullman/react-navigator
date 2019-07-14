@@ -69,12 +69,11 @@ const styles = StyleSheet.create({
     marginBottom:5
   }
 });
-
 export default PopularPage;
 
 class PopularTab extends Component{
   render(){
-    const {tabLabel,testtext}=this.props;
+    const {tabLabel}=this.props;
     return (
       <View>
         <Text>{tabLabel}</Text>
