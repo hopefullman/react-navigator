@@ -18,9 +18,6 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import NavigatorBar from '../navigator/NavigatorBar';
-import navigatorUtil from '../navigator/navigatorUtil';
-import Entypo from 'react-native-vector-icons/Entypo';
 class FetchDemo extends Component{
   constructor(props){
     super(props);
@@ -30,7 +27,9 @@ class FetchDemo extends Component{
 
   }
   search(){
+    alert('123')
     let url=`https://api.github.com/search/repositories?q=${this.searchkey}`
+    alert(url);
     fetch(url)
     .then(response=>{
       if (response.ok) {
@@ -51,24 +50,8 @@ class FetchDemo extends Component{
     })
   }
   render(){
-    const { navigation } = this.props;
-    let leftButton = (
-      <Entypo
-        containerStyle={{paddingLeft: 10}}
-        size={20}
-        color="#333"
-        name="chevron-thin-left"
-        type="Entypo"
-        onPress={() => {
-          navigatorUtil.goBack(navigation);
-        }}/>);
     return (
       <Fragment>
-        <NavigatorBar
-            hide={false}
-            title={'FetchDemo'}
-            style={{backgroundColor: '#fff'}}
-            leftButton={leftButton}/>
         <Text>FetchDemo</Text>
         <View style={styles.ViewStyle}>
           <TextInput

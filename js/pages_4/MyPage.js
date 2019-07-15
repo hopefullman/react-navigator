@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Fragment,Component} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -6,7 +6,7 @@ import {
   View,
   Text,
   StatusBar,
-  TouchableHighlight
+  TouchableHighlight,
 } from 'react-native';
 
 import {
@@ -17,14 +17,12 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import {connect} from 'react-redux';
-import navigatorUtil from '../navigator/navigatorUtil';
-class FavoratePage extends Component{
+class MyPage extends Component{
   render(){
     return (
       <View style={styles.container}>
-        <Text>FavoratePage</Text>
-        <TouchableHighlight onPress={()=>{navigatorUtil.goPage('FetchDemo')}}><Text style={styles.Text}>跳转到fetch</Text></TouchableHighlight>
-        <TouchableHighlight onPress={()=>{this.props.changeActiveTintColor('#0f0')}}><Text style={styles.Text}>换颜色</Text></TouchableHighlight>
+        <Text>MyPage</Text>
+        <TouchableHighlight onPress={()=>{this.props.changeActiveTintColor('#F00')}}><Text style={styles.Text}>继续换颜色</Text></TouchableHighlight>
       </View>
       )
   }
@@ -58,4 +56,4 @@ const styles = StyleSheet.create({
  }
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(FavoratePage);
+export default connect(mapStateToProps,mapDispatchToProps)(MyPage);

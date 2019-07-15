@@ -23,7 +23,7 @@ class FavoratePage extends Component{
     return (
       <View style={styles.container}>
         <Text>FavoratePage</Text>
-        <TouchableHighlight onPress={()=>{navigatorUtil.goPage('FetchDemo')}}><Text style={styles.Text}>跳转到fetch</Text></TouchableHighlight>
+        <TouchableHighlight onPress={()=>{navigatorUtil.goPage({navigation:this.props.navigation},'FetchDemo')}}><Text style={styles.Text}>跳转到fetch</Text></TouchableHighlight>
         <TouchableHighlight onPress={()=>{this.props.changeActiveTintColor('#0f0')}}><Text style={styles.Text}>换颜色</Text></TouchableHighlight>
       </View>
       )

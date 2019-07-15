@@ -6,6 +6,7 @@ import {
   View,
   Text,
   StatusBar,
+  FlatList
 } from 'react-native';
 
 import {
@@ -17,6 +18,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import {createMaterialTopTabNavigator} from 'react-navigation';
 import navigatorUtil from '../navigator/navigatorUtil';
+import {connect} from 'react-redux';
 class PopularPage extends Component{
   constructor(props){
     super(props);
@@ -27,7 +29,7 @@ class PopularPage extends Component{
     const TopTabs={}
     this.DefaultTopTabs.map((item,index)=>{
       TopTabs[`tab${index}`]={
-        screen:props=><PopularTab {...props} tabLabel={item}/>,
+        screen:props=><PopularTabPage {...props} tabLabel={item}/>,
         navigationOptions:{
           title:item
         }
@@ -36,12 +38,13 @@ class PopularPage extends Component{
     return TopTabs;
   }
   render(){
+    const {theme}=this.props;
     const Tabs = createMaterialTopTabNavigator(this.TopTabsmap(),{
       tabBarOptions:{
         tabStyle:styles.tabStyle,
         upperCaseLabel:false,
         scrollEnabled:true,
-        style:styles.style_,
+        style:{backgroundColor:theme},
         indicatorStyle:styles.indicatorStyle,
         labelStyle:styles.labelStyle
       }
@@ -53,7 +56,7 @@ class PopularPage extends Component{
 }
 const styles = StyleSheet.create({
   style_:{
-    backgroundColor:'#21a675'
+    backgroundColor:'#333'
   },
   tabStyle:{
     minWidth:50
@@ -69,17 +72,84 @@ const styles = StyleSheet.create({
     marginBottom:5
   }
 });
-
-export default PopularPage;
+const mapStateToProps=(state)=>{
+  return {
+    theme:state.theme.theme
+  }
+}
+const mapDispatchToProps=(dispatch)=>{
+  return {
+    
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(PopularPage);
 
 class PopularTab extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+      isRefresh:false,
+      showtext:'',
+      list:[]
+    }
+  }
+  componentDidMount(){
+    this.getdata()
+  }
+  getdata(){
+    const {tabLabel}=this.props;
+    let url=`https://api.github.com/search/repositories?q=${tabLabel}&sort=stars`
+    fetch(url)
+    .then(response=>{
+      if (response.ok) {
+          return response.json();
+      }else{
+          throw new Error('请求失败')
+      }
+    })
+    .then(responsejson=>{
+      this.setState({
+        list:responsejson.items
+      })
+    })
+    .catch((err)=>{
+      this.setState({
+        showtext:err.toString()
+      })
+    })
+  }
+  _onRefresh_(){
+    // alert('_onRefresh_')
+  }
+  _onLoadMore_(){
+    // alert('_onLoadMore_')
+  }
   render(){
     const {tabLabel,testtext}=this.props;
     return (
-      <View>
+      <ScrollView style={{height:1000}}>
         <Text>{tabLabel}</Text>
-        <Text onPress={()=>{navigatorUtil.goPage({navigation:this.props.navigation},'DetailPage')}}>详情</Text>
-      </View>
+        <FlatList
+          extraData={this.state}
+          data={this.state.list}
+          keyExtractor={(item) => item.id.toString()}
+          refreshing={this.state.isRefresh}
+          onRefresh={() => this._onRefresh_()}
+          onEndReached={() => this._onLoadMore_()}
+          onEndReachedThreshold={0.1}
+          renderItem={({ item }) => <View><Text onPress={ ()=>{ navigatorUtil.goPage('DetailPage',{keyname:`${item.id}`}) }}>{item.id}</Text></View>}/>
+      </ScrollView>
       )
   }
 }
+const mapStateToPropss=(state)=>{
+  return {
+    theme:state.theme.theme
+  }
+}
+const mapDispatchToPropss=(dispatch)=>{
+  return {
+
+  }
+}
+const PopularTabPage=connect(mapStateToPropss,mapDispatchToPropss)(PopularTab)

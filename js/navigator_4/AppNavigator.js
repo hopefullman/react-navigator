@@ -44,13 +44,11 @@ const Home =createStackNavigator({
         DetailPage:{
           screen:DetailPage,
           navigationOptions:{
-            header:null
           }
         },
         FetchDemo:{
           screen:FetchDemo,
-           navigationOptions:{
-            header:null
+          navigationOptions:{
           }
         }
 })
