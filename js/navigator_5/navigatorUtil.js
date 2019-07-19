@@ -9,7 +9,7 @@ export default class navigatorUtil {
   }
 
   static goPage(page,params){
-    const navigation =navigatorUtil.navigation;
+    const navigation =navigatorUtil.navigation
     navigation.navigate(page,{...params});
   }
 }

@@ -1,10 +1,7 @@
-const defaultState={
-	theme:"#222"
-}
-export default (state=defaultState,action)=>{
+export default (state,action)=>{
 	if (action.type === 'changeActiveTintColor') {
 		const newState = JSON.parse(JSON.stringify(state));
-		newState.theme = action.theme;
+		newState.list[`${tabLabel}`] = action.data;
 		return newState;
 	}
 	return state

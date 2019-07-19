@@ -75,7 +75,7 @@ class Dynamic extends Component{
               labelStyle: {
                 fontSize: 13,
               },
-              activeTintColor:this.props.theme
+              activeTintColor:`${this.props.theme}`
             }
           })
     }

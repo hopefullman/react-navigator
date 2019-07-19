@@ -19,32 +19,32 @@ import NavigatorBar from '../navigator/NavigatorBar';
 import navigatorUtil from '../navigator/navigatorUtil';
 import Entypo from 'react-native-vector-icons/Entypo';
 class DetailPage extends Component{
-
   componentDidMount(){
     
+
   }
   render(){
     const {navigation}=this.props;
     const { params } = this.props.navigation.state;
     let leftButton = (
       <Entypo
-        style={{marginLeft:5}}
-        size={26}
-        color="#fff"
+        containerStyle={{paddingLeft: 10}}
+        size={20}
+        color="#333"
         name="chevron-thin-left"
         type="Entypo"
         onPress={() => {
           navigatorUtil.goBack(navigation);
         }}/>);
-    
     return (
       <Fragment>
         <NavigatorBar
             hide={false}
-            title={params.DetailPageTitle}
+            title={'DetailPage'}
+            style={{backgroundColor: '#fff'}}
             leftButton={leftButton}/>
         <Text>DetailPage</Text>
-        <Text>{params.DetailPageTitle}</Text>
+        <Text>{params.keyname}</Text>
       </Fragment>
       )
   }

@@ -15,8 +15,7 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import navigatorUtil from '../navigator/navigatorUtil';
-import NavigatorBar from '../navigator/NavigatorBar';
+import navigatorUtil from '../navigator/navigatorUtil'
 class WelcomePage extends Component{
   componentDidMount(){
     this.timer=setTimeout(()=>{

@@ -1,5 +1,5 @@
 const defaultState={
-	theme:"#222"
+	theme:'#f00'
 }
 export default (state=defaultState,action)=>{
 	if (action.type === 'changeActiveTintColor') {

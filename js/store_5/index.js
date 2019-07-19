@@ -5,7 +5,6 @@ import {middleware} from '../navigator/AppNavigator'
 
 const middlewares = [
     middleware,
-    thunk,
 ];
 /**
  * 创建store

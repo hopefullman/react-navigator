@@ -6,8 +6,7 @@ import {
   View,
   Text,
   StatusBar,
-  TouchableHighlight,
-  Dimensions
+  TouchableHighlight
 } from 'react-native';
 
 import {
@@ -18,15 +17,11 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import {connect} from 'react-redux';
-import NavigatorBar from '../navigator/NavigatorBar';
 import navigatorUtil from '../navigator/navigatorUtil';
 class FavoratePage extends Component{
   render(){
     return (
-      <View style={{width:width,flex:1}}>
-        <NavigatorBar
-            hide={false}
-            title={'收藏'}/>
+      <View style={styles.container}>
         <Text>FavoratePage</Text>
         <TouchableHighlight onPress={()=>{navigatorUtil.goPage('FetchDemo')}}><Text style={styles.Text}>跳转到fetch</Text></TouchableHighlight>
         <TouchableHighlight onPress={()=>{this.props.changeActiveTintColor('#0f0')}}><Text style={styles.Text}>换颜色</Text></TouchableHighlight>
@@ -50,7 +45,6 @@ const mapDispatchToProps=(dispatch)=>{
     }
   }
 }
-const {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
  container:{
   flexDirection:'column',

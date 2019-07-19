@@ -7,6 +7,7 @@ import {
   Text,
   StatusBar,
   TouchableHighlight,
+  Dimensions
 } from 'react-native';
 
 import {
@@ -16,11 +17,15 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import NavigatorBar from '../navigator/NavigatorBar';
 import {connect} from 'react-redux';
 class MyPage extends Component{
   render(){
     return (
-      <View style={styles.container}>
+      <View style={{width:width,flex:1}}>
+        <NavigatorBar
+            hide={false}
+            title={'我的'}/>
         <Text>MyPage</Text>
         <TouchableHighlight onPress={()=>{this.props.changeActiveTintColor('#F00')}}><Text style={styles.Text}>继续换颜色</Text></TouchableHighlight>
       </View>
@@ -43,6 +48,7 @@ const mapDispatchToProps=(dispatch)=>{
     }
   }
 }
+const {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
  container:{
   flexDirection:'column',

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Fragment,Component} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,7 +7,6 @@ import {
   Text,
   StatusBar,
   TouchableHighlight,
-  Dimensions
 } from 'react-native';
 
 import {
@@ -18,18 +17,12 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import {connect} from 'react-redux';
-import NavigatorBar from '../navigator/NavigatorBar';
-import navigatorUtil from '../navigator/navigatorUtil';
-class FavoratePage extends Component{
+class MyPage extends Component{
   render(){
     return (
-      <View style={{width:width,flex:1}}>
-        <NavigatorBar
-            hide={false}
-            title={'收藏'}/>
-        <Text>FavoratePage</Text>
-        <TouchableHighlight onPress={()=>{navigatorUtil.goPage('FetchDemo')}}><Text style={styles.Text}>跳转到fetch</Text></TouchableHighlight>
-        <TouchableHighlight onPress={()=>{this.props.changeActiveTintColor('#0f0')}}><Text style={styles.Text}>换颜色</Text></TouchableHighlight>
+      <View style={styles.container}>
+        <Text>MyPage</Text>
+        <TouchableHighlight onPress={()=>{this.props.changeActiveTintColor('#F00')}}><Text style={styles.Text}>继续换颜色</Text></TouchableHighlight>
       </View>
       )
   }
@@ -50,7 +43,6 @@ const mapDispatchToProps=(dispatch)=>{
     }
   }
 }
-const {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
  container:{
   flexDirection:'column',
@@ -64,4 +56,4 @@ const styles = StyleSheet.create({
  }
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(FavoratePage);
+export default connect(mapStateToProps,mapDispatchToProps)(MyPage);
